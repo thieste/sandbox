@@ -2,12 +2,15 @@ package de.thieste.java8.service.web;
 
 import de.thieste.java8.service.web.bean.OfferXY;
 import de.thieste.java8.service.web.bean.OfferXYDataBuilder;
-import de.thieste.java8.util.Util;
+import de.thieste.sandbox.core.util.Util;
+
 
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static de.thieste.sandbox.core.util.Util.delay;
 
 
 /**
@@ -16,7 +19,7 @@ import java.util.stream.IntStream;
 public class ShopXYDataProviderMock {
 
     public List<OfferXY> getUpdatedOffers(int number) {
-        Util.delay(100L);
+        delay(100L);
         return IntStream
                 .range(0, number)
                 .mapToObj(this::createRandomOfferXY)

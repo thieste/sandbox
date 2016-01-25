@@ -1,4 +1,4 @@
-package de.thieste.java8.bean;
+package de.thieste.sandbox.core.bean;
 
 /**
  * Created by thieste on 21.12.15.

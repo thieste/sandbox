@@ -1,7 +1,8 @@
 package de.thieste.java8.fetcher;
 
-import de.thieste.java8.bean.Offer;
+
 import de.thieste.java8.service.web.bean.OfferXY;
+import de.thieste.sandbox.core.bean.Offer;
 
 import java.util.ArrayList;
 import java.util.List;

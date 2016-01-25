@@ -1,6 +1,8 @@
 package de.thieste.java8.fetcher;
 
-import de.thieste.java8.bean.Offer;
+
+
+import de.thieste.sandbox.core.bean.Offer;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -25,8 +27,10 @@ public class OfferFetcherCompletableFuture extends BaseOfferFetcher implements O
 
         List<CompletableFuture<Offer>> futures = shopXYService.getUpdatedOffers(maxNumber)
                 .stream()
-                .map(offerXY -> CompletableFuture.supplyAsync(() -> createOffer(offerXY), executorService))
-                .map(f -> f.thenComposeAsync(o -> CompletableFuture.supplyAsync(() -> dbService.save(o),executorService)))
+                .map(offerXY ->
+                        CompletableFuture.supplyAsync(() -> createOffer(offerXY), executorService))
+                .map(f -> f.thenComposeAsync(o ->
+                        CompletableFuture.supplyAsync(() -> dbService.save(o),executorService)))
                 .collect(Collectors.toList());
 
         return futures

@@ -1,6 +1,7 @@
 package de.thieste.java8.service.db;
 
-import de.thieste.java8.bean.Offer;
+
+import de.thieste.sandbox.core.bean.Offer;
 
 /**
  * Created by thieste on 21.12.15.

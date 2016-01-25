@@ -4,24 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-
     <parent>
         <artifactId>sandbox-java8</artifactId>
         <groupId>de.thieste.sandbox</groupId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>java8stuff</artifactId>
-    <version>1.0-SNAPSHOT</version>
-
-
-    <dependencies>
-        <dependency>
-            <groupId>de.thieste.sandbox</groupId>
-            <artifactId>sandbox-core</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-    </dependencies>
+    <artifactId>sandbox-core</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
 
 
 </project>

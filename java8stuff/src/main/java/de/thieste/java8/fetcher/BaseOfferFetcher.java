@@ -1,12 +1,14 @@
 package de.thieste.java8.fetcher;
 
-import de.thieste.java8.bean.Offer;
-import de.thieste.java8.bean.OfferBuilder;
+
 import de.thieste.java8.service.db.DBService;
 import de.thieste.java8.service.db.DBServiceMock;
 import de.thieste.java8.service.web.ShopXYDataProviderMock;
 import de.thieste.java8.service.web.bean.OfferXY;
-import de.thieste.java8.util.Util;
+
+import de.thieste.sandbox.core.bean.Offer;
+import de.thieste.sandbox.core.bean.OfferBuilder;
+import de.thieste.sandbox.core.util.Util;
 
 import java.util.Random;
 

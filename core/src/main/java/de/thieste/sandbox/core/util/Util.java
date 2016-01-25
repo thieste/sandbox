@@ -1,4 +1,4 @@
-package de.thieste.java8.util;
+package de.thieste.sandbox.core.util;
 
 /**
  * some helper methods

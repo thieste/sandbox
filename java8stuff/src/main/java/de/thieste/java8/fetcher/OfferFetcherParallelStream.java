@@ -1,6 +1,8 @@
 package de.thieste.java8.fetcher;
 
-import de.thieste.java8.bean.Offer;
+
+
+import de.thieste.sandbox.core.bean.Offer;
 
 import java.util.List;
 import java.util.stream.Collectors;
