@@ -1,6 +1,9 @@
 package de.thieste.sandbox.om.service;
 
+import com.mongodb.WriteResult;
 import de.thieste.sandbox.om.bean.OfferMetaData;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class MongoTemplateBasedService implements OMDSService {
 
+    private static final Logger LOG = LoggerFactory.getLogger(MongoTemplateBasedService.class);
     private final MongoTemplate mongoTemplate;
 
 
@@ -48,9 +52,9 @@ public class MongoTemplateBasedService implements OMDSService {
             updateAllWithFilterReason(offerMetaData, filterReason);
         }
 
+        removeOlderImports(offerMetaData.getImportId());
         mongoTemplate.save(offerMetaData, "offerMetaData");
 
-        removeOlderImports(offerMetaData.getImportId());
     }
 
     @Override
@@ -63,15 +67,19 @@ public class MongoTemplateBasedService implements OMDSService {
     private void updateAllWithFilterReason(OfferMetaData offerMetaData, String filterReason) {
         final Criteria criteria = Criteria
                 .where("importId").is(offerMetaData.getImportId())
-                .and("uniqueKey").ne(offerMetaData.getUniqueKey());
+                .and("uniqueKey").is(offerMetaData.getUniqueKey());
 
         final Update update = Update.update("filterReason", filterReason);
 
 
-        mongoTemplate.findAndModify(Query.query(criteria), update, updateOptions, OfferMetaData.class);
+        final WriteResult writeResult = mongoTemplate.updateMulti(Query.query(criteria), update, OfferMetaData.class);
+
+        LOG.info("updated:{}", writeResult.getN());
+
+//        mongoTemplate.findAndModify(Query.query(criteria), update, updateOptions, OfferMetaData.class);
     }
 
-    private void removeOlderImports(String importId) {
+    public void removeOlderImports(String importId) {
         final Criteria criteria = Criteria
                 .where("importId").ne(importId);
         mongoTemplate.remove(Query.query(criteria), OfferMetaData.class);

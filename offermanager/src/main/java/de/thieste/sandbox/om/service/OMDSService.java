@@ -9,4 +9,6 @@ public interface OMDSService {
     void save(OfferMetaData offerMetaData, String filterReason);
 
      void save(OfferMetaData offerMetaData);
+
+    void removeOlderImports(String importId);
 }

@@ -40,11 +40,12 @@ public class Application implements CommandLineRunner {
 
         final String importId = UUID.randomUUID().toString();
 
-        LOG.info("current import {}",importId);
+        LOG.info("current import {}", importId);
         final StopWatch stopWatch = new StopWatch();
 
+        omdsService.removeOlderImports(importId);
         stopWatch.start();
-        IntStream.range(0, 10).mapToObj(i -> OfferMetaDataBuilder
+        IntStream.range(0, 100000).mapToObj(i -> OfferMetaDataBuilder
                 .offerKey("key" + i)
                 .importId(importId)
                 .price(priceRnd.nextInt(100 - 1 + 1) + 1)
